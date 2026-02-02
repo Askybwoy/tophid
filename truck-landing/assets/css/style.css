@@ -224,7 +224,7 @@ ul {
     /* Reduced min-height for mobile landscape */
     display: flex;
     align-items: center;
-    background-image: url('../images/hero-bg.png');
+    background-image: url('../images/hero-bg.jpg');
     /* Updated to use local generated image */
     background-size: cover;
     background-position: center;
