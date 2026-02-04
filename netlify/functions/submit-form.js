@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
         const formData = JSON.parse(event.body);
 
         // n8n webhook URL
-        const webhookUrl = 'https://askydesign.app.n8n.cloud/webhook-test/8ce95c12-10e4-4970-9115-6266b62b8744';
+        const webhookUrl = 'https://askydesign.app.n8n.cloud/webhook-test/c09f756c-1df4-44ce-98e5-7227136106c9';
 
         // Forward data to n8n webhook
         const response = await fetch(webhookUrl, {
