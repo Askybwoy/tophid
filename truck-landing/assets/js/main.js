@@ -90,24 +90,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 4. Simple Form Handling (Prototype) ---
+    // --- 4. Form Submission to Webhook ---
     const form = document.querySelector('.contact-form');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
             const btn = form.querySelector('button[type="submit"]');
+            const formStatus = document.getElementById('formStatus');
             const originalText = btn.innerText;
 
+            // Clear previous status
+            formStatus.textContent = '';
+            formStatus.className = 'form-status';
+
+            // Disable button and show loading state
             btn.innerText = 'Отправка...';
             btn.disabled = true;
 
-            // Simulate API call
-            setTimeout(() => {
-                alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами в течение 15 минут.');
-                form.reset();
+            // Collect form data
+            const formData = {
+                truck: form.querySelector('[name="truck"]').value,
+                issue: form.querySelector('[name="issue"]').value,
+                phone: form.querySelector('[name="phone"]').value
+            };
+
+            try {
+                // Send to Netlify Function
+                const response = await fetch('/.netlify/functions/submit-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success message
+                    formStatus.textContent = '✓ Спасибо! Ваша заявка принята. Мы свяжемся с вами в течение 15 минут.';
+                    formStatus.className = 'form-status form-status-success';
+                    form.reset();
+                } else {
+                    throw new Error(result.error || 'Ошибка отправки');
+                }
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+                formStatus.textContent = '✗ ' + (error.message || 'Ошибка отправки. Пожалуйста, попробуйте позже или позвоните нам.');
+                formStatus.className = 'form-status form-status-error';
+            } finally {
+                // Re-enable button
                 btn.innerText = originalText;
                 btn.disabled = false;
-            }, 1000);
+            }
         });
     }
 
