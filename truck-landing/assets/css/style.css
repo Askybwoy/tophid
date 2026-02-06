@@ -187,6 +187,10 @@ ul {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: 12px 0;
+    }
+
     .nav-toggle {
         display: block;
     }
@@ -213,6 +217,10 @@ ul {
     .nav-phone {
         display: none;
         /* Hide phone in header on mobile to save space */
+    }
+
+    .logo {
+        font-size: 1.3rem;
     }
 }
 
@@ -254,15 +262,15 @@ ul {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-size: clamp(1.75rem, 5vw, 5rem);
     /* Reduced min size for mobile */
     margin-bottom: 20px;
     line-height: 1.1;
 }
 
 .hero-subtitle {
-    font-size: 1rem;
-    letter-spacing: 0.15em;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+    letter-spacing: 0.1em;
     color: var(--accent-blue);
     text-transform: uppercase;
     font-weight: 700;
@@ -270,7 +278,7 @@ ul {
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     color: var(--text-secondary);
     max-width: 600px;
     margin: 30px 0;
@@ -305,6 +313,50 @@ ul {
 
 .feature-icon {
     color: var(--accent-orange);
+}
+
+/* Mobile Hero Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 500px;
+        padding-top: 80px; /* Add space for fixed navbar */
+    }
+
+    .hero-content {
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+        margin-bottom: 15px;
+        line-height: 1.15;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 12px;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin: 20px 0;
+        line-height: 1.5;
+    }
+
+    .hero-actions {
+        gap: 12px;
+        margin: 25px 0;
+    }
+
+    .hero-features {
+        gap: 15px;
+        padding-top: 20px;
+    }
+
+    .feature-item {
+        font-size: 0.85rem;
+    }
 }
 
 /* Section Common */
