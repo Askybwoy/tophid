@@ -727,6 +727,21 @@ ul {
     color: var(--accent-blue);
 }
 
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .review-card {
+        padding: 25px;
+    }
+
+    .review-text {
+        font-size: 1rem;
+    }
+}
+
 /* Contacts */
 .contact-wrapper {
     display: grid;
